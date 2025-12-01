@@ -40,6 +40,8 @@
             --success: #4CAF50;
             --error: #f44336;
             --warning: #ff9800;
+            --whatsapp-green: #25D366;
+            --whatsapp-dark: #128C7E;
             --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
             --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
             --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
@@ -62,7 +64,6 @@
             line-height: 1.6;
             font-size: 14px;
             -webkit-text-size-adjust: 100%;
-            padding-bottom: 0;
             overflow-x: hidden;
             padding-bottom: 70px;
         }
@@ -429,20 +430,21 @@
             background: rgba(0,0,0,0.6);
         }
         
-        /* Fixed Bottom Navigation */
+        /* Modern Fixed Bottom Navigation */
         .bottom-nav {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
             background: var(--bg-primary);
-            box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.15);
             z-index: 999;
             display: none;
-            border-top: 1px solid var(--border-color);
-            padding: 0.5rem 0;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            padding: 0.6rem 0;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.95);
         }
         
         .bottom-nav-container {
@@ -451,7 +453,7 @@
             align-items: center;
             max-width: 500px;
             margin: 0 auto;
-            padding: 0 0.5rem;
+            padding: 0 0.8rem;
         }
         
         .bottom-nav-item {
@@ -465,50 +467,80 @@
             flex: 1;
             min-width: 60px;
             position: relative;
+            border-radius: 12px;
+            margin: 0 2px;
         }
         
         .bottom-nav-item.active {
             color: var(--gold);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+            transform: translateY(-5px);
+        }
+        
+        .bottom-nav-item.active::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 5px;
+            height: 5px;
+            background: var(--gold);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--gold);
         }
         
         .bottom-nav-icon {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             margin-bottom: 0.3rem;
             transition: var(--transition);
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .bottom-nav-label {
             font-size: 0.7rem;
-            font-weight: 500;
+            font-weight: 600;
             transition: var(--transition);
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
         }
         
         .bottom-nav-item.active .bottom-nav-icon {
-            transform: translateY(-2px);
+            transform: scale(1.1);
+            filter: drop-shadow(0 2px 4px rgba(212, 175, 55, 0.3));
         }
         
         .bottom-nav-item.active .bottom-nav-label {
-            font-weight: 600;
+            font-weight: 700;
+            color: var(--gold);
         }
         
         .bottom-nav-item:hover {
             color: var(--gold);
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(212, 175, 55, 0.02) 100%);
         }
         
         .bottom-nav-cart-badge {
             position: absolute;
-            top: 2px;
-            right: 15px;
+            top: 5px;
+            right: 8px;
             background: var(--accent);
             color: white;
             border-radius: 50%;
-            width: 16px;
-            height: 16px;
-            font-size: 0.65rem;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 600;
+            font-weight: 700;
+            border: 2px solid var(--white);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         
         @media (max-width: 768px) {
@@ -518,6 +550,218 @@
             
             .bottom-nav-item {
                 padding: 0.5rem;
+            }
+        }
+        
+        /* WhatsApp Chatbot Button */
+        .whatsapp-chatbot {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            z-index: 998;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        
+        .whatsapp-toggle {
+            background: var(--whatsapp-green);
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+            transition: var(--transition);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .whatsapp-toggle:hover {
+            background: var(--whatsapp-dark);
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
+        }
+        
+        .whatsapp-toggle.active {
+            background: var(--whatsapp-dark);
+            transform: rotate(45deg);
+        }
+        
+        .whatsapp-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ff3b30;
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            border: 2px solid white;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* WhatsApp Chat Modal */
+        .whatsapp-modal {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 350px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: var(--transition-slow);
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .whatsapp-modal.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .whatsapp-header {
+            background: linear-gradient(135deg, var(--whatsapp-green) 0%, var(--whatsapp-dark) 100%);
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .whatsapp-avatar {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--whatsapp-green);
+        }
+        
+        .whatsapp-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .whatsapp-info p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+        
+        .whatsapp-body {
+            padding: 1.5rem;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .whatsapp-message {
+            margin-bottom: 1rem;
+            display: flex;
+        }
+        
+        .whatsapp-message.bot {
+            justify-content: flex-start;
+        }
+        
+        .whatsapp-message.user {
+            justify-content: flex-end;
+        }
+        
+        .message-bubble {
+            max-width: 80%;
+            padding: 0.8rem 1rem;
+            border-radius: 18px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        .bot .message-bubble {
+            background: #f0f0f0;
+            color: var(--text-primary);
+            border-bottom-left-radius: 5px;
+        }
+        
+        .user .message-bubble {
+            background: var(--whatsapp-green);
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .whatsapp-input-container {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: 0.8rem;
+            background: var(--bg-secondary);
+        }
+        
+        .whatsapp-input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 25px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        
+        .whatsapp-input:focus {
+            outline: none;
+            border-color: var(--whatsapp-green);
+            box-shadow: 0 0 0 2px rgba(37, 211, 102, 0.1);
+        }
+        
+        .whatsapp-send {
+            background: var(--whatsapp-green);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        
+        .whatsapp-send:hover {
+            background: var(--whatsapp-dark);
+            transform: scale(1.05);
+        }
+        
+        @media (max-width: 480px) {
+            .whatsapp-modal {
+                width: 300px;
+                right: -10px;
+            }
+            
+            .whatsapp-chatbot {
+                bottom: 70px;
+                right: 10px;
             }
         }
         
@@ -1768,60 +2012,6 @@
             margin: 0 auto;
         }
         
-        /* Luxury Footer */
-        .main-footer {
-            background: var(--black);
-            color: var(--white);
-            padding: 4rem 1.5rem 2rem;
-            margin-top: 4rem;
-        }
-        
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-        }
-        
-        .footer-section h4 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            color: var(--gold);
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-        
-        .footer-links a {
-            color: var(--white);
-            text-decoration: none;
-            transition: var(--transition);
-            opacity: 0.8;
-            font-size: 0.9rem;
-        }
-        
-        .footer-links a:hover {
-            opacity: 1;
-            color: var(--gold);
-        }
-        
-        .footer-bottom {
-            max-width: 1400px;
-            margin: 3rem auto 0;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            text-align: center;
-            opacity: 0.7;
-            font-size: 0.9rem;
-        }
-        
         /* Notification */
         .notification {
             position: fixed;
@@ -2037,11 +2227,6 @@
             .product-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
             }
         }
 
@@ -2369,7 +2554,7 @@
         <span class="cart-count" id="cartCount">0</span>
     </button>
     
-    <!-- Fixed Bottom Navigation -->
+    <!-- Modern Fixed Bottom Navigation -->
     <nav class="bottom-nav">
         <div class="bottom-nav-container">
             <a href="#home" class="bottom-nav-item active" id="bottomHomeBtn">
@@ -2395,39 +2580,42 @@
             </a>
         </div>
     </nav>
-
-    <!-- Luxury Footer -->
-    <footer class="main-footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>DSOG STORES</h4>
-                <p style="opacity: 0.8; line-height: 1.6; font-size: 0.9rem;">Elevating everyday living through exquisite design, curated art, and luxury essentials for the modern home.</p>
+    
+    <!-- WhatsApp Chatbot -->
+    <div class="whatsapp-chatbot">
+        <div class="whatsapp-modal" id="whatsappModal">
+            <div class="whatsapp-header">
+                <div class="whatsapp-avatar">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <div class="whatsapp-info">
+                    <h4>DSOG STORES Assistant</h4>
+                    <p>Typically replies in minutes</p>
+                </div>
             </div>
-            
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul class="footer-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="new-arrivals.html">New Arrivals</a></li>
-                    <li><a href="offers.html">Offers</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
+            <div class="whatsapp-body" id="whatsappBody">
+                <div class="whatsapp-message bot">
+                    <div class="message-bubble">
+                        <p>👋 Hello! Thank you for reaching out to DSOG STORES!</p>
+                        <p>How can I assist you today?</p>
+                        <p style="margin-top: 10px; font-size: 0.8rem; color: #666;">
+                            Type your question or request below, and I'll help you continue the conversation on WhatsApp.
+                        </p>
+                    </div>
+                </div>
             </div>
-            
-            <div class="footer-section">
-                <h4>Connect</h4>
-                <ul class="footer-links">
-                    <li style="margin-top: 1rem; opacity: 0.8; font-size: 0.9rem;">Email: care.dsogstores@gmail.com</li>
-                    <li style="opacity: 0.8; font-size: 0.9rem;">WhatsApp: +254784599322</li>
-                </ul>
+            <div class="whatsapp-input-container">
+                <input type="text" class="whatsapp-input" id="whatsappInput" 
+                       placeholder="Type your message here...">
+                <button class="whatsapp-send" id="whatsappSend">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
             </div>
         </div>
-        
-        <div class="footer-bottom">
-            <p>&copy; 2025 DSOG STORES. All rights reserved. You Imagine, We Create.</p>
-        </div>
-    </footer>
+        <button class="whatsapp-toggle" id="whatsappToggle">
+            <i class="fab fa-whatsapp"></i>
+        </button>
+    </div>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.js"></script>
@@ -2610,6 +2798,14 @@
             const continueShoppingBtn = document.getElementById('continueShoppingBtn');
             const viewOrderBtn = document.getElementById('viewOrderBtn');
 
+            // WhatsApp Chatbot Elements
+            const whatsappToggle = document.getElementById('whatsappToggle');
+            const whatsappModal = document.getElementById('whatsappModal');
+            const whatsappInput = document.getElementById('whatsappInput');
+            const whatsappSend = document.getElementById('whatsappSend');
+            const whatsappBody = document.getElementById('whatsappBody');
+            const whatsappChatbot = document.querySelector('.whatsapp-chatbot');
+
             function updateCartUI() {
                 const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
                 cartCount.textContent = totalItems;
@@ -2658,6 +2854,104 @@
                 cartContent.innerHTML = cartHTML;
                 cartTotal.textContent = `KSh ${total.toFixed(2)}`;
             }
+
+            // WhatsApp Chatbot Functionality
+            function toggleWhatsAppModal() {
+                const isActive = whatsappToggle.classList.contains('active');
+                
+                if (isActive) {
+                    whatsappToggle.classList.remove('active');
+                    whatsappModal.classList.remove('active');
+                } else {
+                    whatsappToggle.classList.add('active');
+                    whatsappModal.classList.add('active');
+                    whatsappInput.focus();
+                }
+            }
+
+            function sendWhatsAppMessage() {
+                const message = whatsappInput.value.trim();
+                
+                if (!message) {
+                    showNotification('Please enter a message', 'error');
+                    return;
+                }
+                
+                // Add user message to chat
+                const userMessage = document.createElement('div');
+                userMessage.className = 'whatsapp-message user';
+                userMessage.innerHTML = `<div class="message-bubble">${message}</div>`;
+                whatsappBody.appendChild(userMessage);
+                
+                // Clear input
+                whatsappInput.value = '';
+                
+                // Scroll to bottom
+                whatsappBody.scrollTop = whatsappBody.scrollHeight;
+                
+                // Show thinking message
+                const thinkingMessage = document.createElement('div');
+                thinkingMessage.className = 'whatsapp-message bot';
+                thinkingMessage.innerHTML = `<div class="message-bubble">Typing...</div>`;
+                whatsappBody.appendChild(thinkingMessage);
+                
+                // Scroll to bottom
+                whatsappBody.scrollTop = whatsappBody.scrollHeight;
+                
+                // Simulate bot response after delay
+                setTimeout(() => {
+                    // Remove thinking message
+                    thinkingMessage.remove();
+                    
+                    // Add bot response
+                    const botMessage = document.createElement('div');
+                    botMessage.className = 'whatsapp-message bot';
+                    botMessage.innerHTML = `
+                        <div class="message-bubble">
+                            <p>Thank you for your message! 🎉</p>
+                            <p>I'm connecting you to our WhatsApp support team where you can continue this conversation.</p>
+                            <p style="margin-top: 10px; font-size: 0.8rem; color: #666;">
+                                Opening WhatsApp...
+                            </p>
+                        </div>
+                    `;
+                    whatsappBody.appendChild(botMessage);
+                    
+                    // Scroll to bottom
+                    whatsappBody.scrollTop = whatsappBody.scrollHeight;
+                    
+                    // Open WhatsApp with the message
+                    const whatsappUrl = `https://wa.me/254784599322?text=${encodeURIComponent(message)}`;
+                    window.open(whatsappUrl, '_blank');
+                    
+                    // Close modal after delay
+                    setTimeout(() => {
+                        whatsappToggle.classList.remove('active');
+                        whatsappModal.classList.remove('active');
+                        showNotification('WhatsApp opened! Continue your conversation there.', 'success');
+                    }, 2000);
+                    
+                }, 1500);
+            }
+
+            // WhatsApp event listeners
+            whatsappToggle.addEventListener('click', toggleWhatsAppModal);
+            
+            whatsappSend.addEventListener('click', sendWhatsAppMessage);
+            
+            whatsappInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendWhatsAppMessage();
+                }
+            });
+            
+            // Close WhatsApp modal when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!whatsappChatbot.contains(e.target) && whatsappModal.classList.contains('active')) {
+                    whatsappToggle.classList.remove('active');
+                    whatsappModal.classList.remove('active');
+                }
+            });
 
             // Cart event listeners
             cartBtn.addEventListener('click', function() {
