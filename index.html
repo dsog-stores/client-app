@@ -429,25 +429,29 @@
             background: rgba(0,0,0,0.6);
         }
         
-        /* Bottom Navigation for App-like Experience */
+        /* Fixed Bottom Navigation */
         .bottom-nav {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
             background: var(--bg-primary);
-            box-shadow: 0 -2px 20px var(--shadow-color);
+            box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.1);
             z-index: 999;
             display: none;
             border-top: 1px solid var(--border-color);
+            padding: 0.5rem 0;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
         
         .bottom-nav-container {
             display: flex;
             justify-content: space-around;
-            padding: 0.5rem 0;
+            align-items: center;
             max-width: 500px;
             margin: 0 auto;
+            padding: 0 0.5rem;
         }
         
         .bottom-nav-item {
@@ -457,9 +461,10 @@
             text-decoration: none;
             color: var(--text-secondary);
             transition: var(--transition);
-            padding: 0.5rem;
+            padding: 0.5rem 0.8rem;
             flex: 1;
-            max-width: 80px;
+            min-width: 60px;
+            position: relative;
         }
         
         .bottom-nav-item.active {
@@ -467,18 +472,52 @@
         }
         
         .bottom-nav-icon {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 0.3rem;
+            transition: var(--transition);
         }
         
         .bottom-nav-label {
             font-size: 0.7rem;
             font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .bottom-nav-item.active .bottom-nav-icon {
+            transform: translateY(-2px);
+        }
+        
+        .bottom-nav-item.active .bottom-nav-label {
+            font-weight: 600;
+        }
+        
+        .bottom-nav-item:hover {
+            color: var(--gold);
+        }
+        
+        .bottom-nav-cart-badge {
+            position: absolute;
+            top: 2px;
+            right: 15px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            font-size: 0.65rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
         }
         
         @media (max-width: 768px) {
             .bottom-nav {
                 display: block;
+            }
+            
+            .bottom-nav-item {
+                padding: 0.5rem;
             }
         }
         
@@ -1681,13 +1720,14 @@
             cursor: zoom-in;
         }
         
-        /* Loading Animation */
+        /* Loading Animation - Optimized */
         .loading-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 3rem;
+            padding: 2rem;
             grid-column: 1 / -1;
+            min-height: 300px;
         }
         
         .loading-spinner {
@@ -1780,6 +1820,37 @@
             text-align: center;
             opacity: 0.7;
             font-size: 0.9rem;
+        }
+        
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: var(--black);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-xl);
+            z-index: 10000;
+            transform: translateX(400px);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            max-width: 300px;
+            font-weight: 600;
+            border-left: 4px solid var(--gold);
+            font-size: 0.9rem;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification.success {
+            border-left-color: var(--success);
+        }
+        
+        .notification.error {
+            border-left-color: var(--error);
         }
         
         /* Enhanced Mobile Responsiveness */
@@ -1992,37 +2063,6 @@
             opacity: 1;
             visibility: visible;
         }
-        
-        /* Notification */
-        .notification {
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            background: var(--black);
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            box-shadow: var(--shadow-xl);
-            z-index: 10000;
-            transform: translateX(400px);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            max-width: 300px;
-            font-weight: 600;
-            border-left: 4px solid var(--gold);
-            font-size: 0.9rem;
-        }
-        
-        .notification.show {
-            transform: translateX(0);
-        }
-        
-        .notification.success {
-            border-left-color: var(--success);
-        }
-        
-        .notification.error {
-            border-left-color: var(--error);
-        }
     </style>
 </head>
 <body>
@@ -2220,10 +2260,7 @@
                 <button class="header-icon" id="searchBtn" aria-label="Search">
                     <i class="fas fa-search"></i>
                 </button>
-                <button class="header-icon" id="wishlistBtn" aria-label="Wishlist">
-                    <i class="fas fa-heart"></i>
-                    <span class="notification-badge">2</span>
-                </button>
+                <!-- Wishlist button removed -->
             </div>
         </div>
     </header>
@@ -2332,16 +2369,16 @@
         <span class="cart-count" id="cartCount">0</span>
     </button>
     
-    <!-- Bottom Navigation for Mobile -->
+    <!-- Fixed Bottom Navigation -->
     <nav class="bottom-nav">
         <div class="bottom-nav-container">
-            <a href="#home" class="bottom-nav-item active">
+            <a href="#home" class="bottom-nav-item active" id="bottomHomeBtn">
                 <i class="fas fa-home bottom-nav-icon"></i>
                 <span class="bottom-nav-label">Home</span>
             </a>
             <a href="new-arrivals.html" class="bottom-nav-item">
                 <i class="fas fa-star bottom-nav-icon"></i>
-                <span class="bottom-nav-label">New Arrivals</span>
+                <span class="bottom-nav-label">New</span>
             </a>
             <a href="offers.html" class="bottom-nav-item">
                 <i class="fas fa-tag bottom-nav-icon"></i>
@@ -2349,12 +2386,12 @@
             </a>
             <a href="about.html" class="bottom-nav-item">
                 <i class="fas fa-info-circle bottom-nav-icon"></i>
-                <span class="bottom-nav-label">About Us</span>
+                <span class="bottom-nav-label">About</span>
             </a>
             <a href="#cart" class="bottom-nav-item" id="bottomCartBtn">
                 <i class="fas fa-shopping-bag bottom-nav-icon"></i>
                 <span class="bottom-nav-label">Cart</span>
-                <span class="notification-badge" id="bottomCartCount">0</span>
+                <span class="bottom-nav-cart-badge" id="bottomCartCount">0</span>
             </a>
         </div>
     </nav>
@@ -2554,6 +2591,7 @@
             // Bottom nav cart elements
             const bottomCartBtn = document.getElementById('bottomCartBtn');
             const bottomCartCount = document.getElementById('bottomCartCount');
+            const bottomHomeBtn = document.getElementById('bottomHomeBtn');
 
             // Order modal elements
             const orderModal = document.getElementById('orderModal');
@@ -2965,85 +3003,19 @@
                 }
             });
 
-            // Order submission
-            submitOrderBtn.addEventListener('click', async function() {
-                const customerName = document.getElementById('customerName').value;
-                const email = document.getElementById('email').value;
-                const phone = document.getElementById('phone').value;
-                const deliveryAddress = document.getElementById('deliveryAddress').value;
-                const specialInstructions = document.getElementById('specialInstructions').value;
-                
-                // Validate required fields
-                if (!customerName || !email || !phone || !deliveryAddress) {
-                    showNotification('Please fill in all required fields', 'error');
-                    return;
-                }
-                
-                // Save customer info for future orders
-                localStorage.setItem('dsogstores_customer', JSON.stringify({
-                    name: customerName,
-                    email: email,
-                    phone: phone,
-                    address: deliveryAddress
-                }));
-                
-                try {
-                    submitOrderBtn.disabled = true;
-                    submitOrderBtn.innerHTML = '<div class="loading"></div> Processing...';
-                    
-                    const orderData = {
-                        action: 'submitOrder',
-                        customerName: customerName,
-                        email: email,
-                        phone: phone,
-                        deliveryAddress: deliveryAddress,
-                        specialInstructions: specialInstructions,
-                        items: cartItems
-                    };
-                    
-                    const response = await fetch(scriptUrl, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(orderData),
-                        mode: 'no-cors'
-                    });
-                    
-                    // Calculate total for confirmation
-                    const total = cartItems.reduce((sum, item) => sum + (item.basePrice * item.quantity), 0);
-                    
-                    // Update confirmation modal with order details
-                    confirmationOrderNumber.textContent = `DSOG-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
-                    confirmationTotal.textContent = `KSh ${total.toFixed(2)}`;
-                    
-                    // Close order modal and open confirmation modal
-                    orderModal.classList.remove('active');
-                    confirmationModal.classList.add('active');
-                    
-                    // Clear cart
-                    cartItems = [];
-                    localStorage.removeItem('dsogstores_cart');
-                    updateCartUI();
-                    
-                    showNotification('Order placed successfully!', 'success');
-                    
-                } catch (error) {
-                    console.error('Order submission error:', error);
-                    errorText.textContent = 'Failed to submit order. Please try again.';
-                    errorMessage.style.display = 'flex';
-                    errorMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    showNotification('Failed to submit order. Please try again.', 'error');
-                } finally {
-                    submitOrderBtn.disabled = false;
-                    submitOrderBtn.innerHTML = '<i class="fas fa-shopping-cart"></i> Complete Order';
-                }
-            });
-
-            // Load products from Google Apps Script
+            // Load products from Google Apps Script with timeout
             async function loadProducts() {
+                const container = document.getElementById('productListingsContainer');
+                
                 try {
-                    const response = await fetch(`${scriptUrl}?action=getProducts`);
+                    // Set a timeout for the fetch request
+                    const timeoutPromise = new Promise((_, reject) => 
+                        setTimeout(() => reject(new Error('Request timeout')), 5000)
+                    );
+                    
+                    const fetchPromise = fetch(`${scriptUrl}?action=getProducts`);
+                    
+                    const response = await Promise.race([fetchPromise, timeoutPromise]);
                     
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
@@ -3059,9 +3031,9 @@
                     }
                     
                 } catch (error) {
-                    console.error('Error loading products from Google Apps Script:', error);
-                    // Fallback to sample products if backend fails
-                    loadSampleProducts();
+                    console.error('Error loading products:', error);
+                    // Show cached products if available
+                    loadCachedProducts();
                 }
             }
 
@@ -3097,6 +3069,22 @@
                 }
             ];
 
+            // Check if products are cached in localStorage
+            function loadCachedProducts() {
+                const cachedProducts = localStorage.getItem('dsogstores_cached_products');
+                if (cachedProducts) {
+                    try {
+                        const products = JSON.parse(cachedProducts);
+                        displayProducts(products);
+                        showNotification('Loaded products from cache', 'info');
+                    } catch (e) {
+                        loadSampleProducts();
+                    }
+                } else {
+                    loadSampleProducts();
+                }
+            }
+
             function loadSampleProducts() {
                 displayProducts(sampleProducts);
                 showNotification('Using sample products. Check Google Apps Script configuration.', 'warning');
@@ -3104,6 +3092,9 @@
 
             function displayProducts(products) {
                 const container = document.getElementById('productListingsContainer');
+                
+                // Cache products for future use
+                localStorage.setItem('dsogstores_cached_products', JSON.stringify(products));
                 
                 if (!products || products.length === 0) {
                     container.innerHTML = `
@@ -3188,22 +3179,24 @@
                         e.stopPropagation();
                         openGallery(product.image);
                     });
-                    
-                    // Card hover effect
-                    productCard.addEventListener('mouseenter', function() {
-                        this.style.transform = 'translateY(-10px)';
-                        this.style.boxShadow = 'var(--shadow-xl)';
-                    });
-                    
-                    productCard.addEventListener('mouseleave', function() {
-                        this.style.transform = 'translateY(0)';
-                        this.style.boxShadow = 'var(--shadow-md)';
-                    });
                 });
             }
 
             // Load products on page load
             loadProducts();
+
+            // Bottom navigation active state
+            document.querySelectorAll('.bottom-nav-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    if (this.id !== 'bottomCartBtn') {
+                        e.preventDefault();
+                        document.querySelectorAll('.bottom-nav-item').forEach(navItem => {
+                            navItem.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                    }
+                });
+            });
         });
     </script>
 </body>
