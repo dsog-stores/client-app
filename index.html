@@ -268,7 +268,7 @@
             color: var(--primary-red);
         }
         
-        /* Hero Section - FIXED */
+        /* Hero Section */
         .hero-section {
             position: relative;
             height: 70vh;
@@ -418,100 +418,136 @@
             background: var(--primary-red);
         }
         
-        /* Latest Products Carousel */
-        .latest-products {
+        /* Featured Categories */
+        .featured-categories {
             padding: 3rem 1.5rem;
             max-width: 1400px;
             margin: 0 auto;
         }
         
-        .section-title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
+        .section-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
         }
         
-        .section-title h2 {
+        .section-header h2 {
             font-family: 'Montserrat', sans-serif;
             font-size: clamp(1.6rem, 3.5vw, 2.2rem);
             color: var(--text-primary);
-            margin: 0;
+            margin-bottom: 0.8rem;
             position: relative;
             display: inline-block;
             font-weight: 700;
         }
         
-        .section-title h2::after {
+        .section-header h2::after {
             content: '';
             position: absolute;
             bottom: -8px;
-            left: 0;
+            left: 50%;
+            transform: translateX(-50%);
             width: 60px;
             height: 3px;
             background: var(--primary-red);
         }
         
-        .view-all-btn {
-            background: var(--primary-red);
-            color: var(--white);
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 0;
-            cursor: pointer;
-            font-weight: 600;
+        .section-header p {
+            color: var(--gray);
+            max-width: 500px;
+            margin: 0 auto;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .category-card {
+            position: relative;
+            height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
             transition: var(--transition);
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-red);
+        }
+        
+        .category-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        
+        .category-card:hover .category-image {
+            transform: scale(1.05);
+        }
+        
+        .category-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(178, 34, 34, 0.8));
+            color: white;
+            padding: 1.5rem;
+        }
+        
+        .category-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+        }
+        
+        .category-description {
+            opacity: 0.9;
             font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
         
-        .view-all-btn:hover {
-            background: var(--secondary-red);
-            transform: translateY(-2px);
-        }
-        
-        .latest-swiper {
-            padding: 1rem 0 3rem;
-        }
-        
-        .product-slide {
-            height: auto;
-        }
-        
-        /* Category Sections */
-        .category-section {
+        /* Product Listings Section */
+        .product-listings {
             padding: 3rem 1.5rem;
             max-width: 1400px;
             margin: 0 auto;
         }
         
-        .category-section:first-of-type {
-            padding-top: 0;
-        }
-        
-        .category-header {
+        .category-filter {
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
             margin-bottom: 2rem;
         }
         
-        .category-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(1.5rem, 3vw, 2rem);
+        .category-btn {
+            background: var(--white);
+            border: 2px solid var(--border-color);
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            font-size: 0.8rem;
             color: var(--text-primary);
-            margin: 0;
-            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
         
-        .category-description {
-            color: var(--gray);
-            font-size: 0.9rem;
-            max-width: 500px;
-            margin-top: 0.5rem;
+        .category-btn.active, .category-btn:hover {
+            background: var(--primary-red);
+            color: var(--white);
+            border-color: var(--primary-red);
         }
         
         .product-grid {
@@ -565,6 +601,16 @@
             height: 200px;
             overflow: hidden;
             position: relative;
+        }
+        
+        .product-image-slider {
+            height: 100%;
+            width: 100%;
+        }
+        
+        .product-image-slide {
+            width: 100%;
+            height: 100%;
         }
         
         .product-image-slide img {
@@ -629,11 +675,6 @@
             display: flex;
             align-items: center;
             gap: 0.3rem;
-        }
-        
-        .pride-of-africa {
-            color: var(--primary-gold);
-            font-weight: 600;
         }
         
         .product-footer {
@@ -1538,7 +1579,7 @@
         /* WhatsApp Chat Bot */
         .whatsapp-chat-bot {
             position: fixed;
-            bottom: 5rem;
+            bottom: 2rem;
             right: 2rem;
             z-index: 999;
         }
@@ -1709,57 +1750,69 @@
             border-color: var(--primary-red);
         }
         
-        /* Mobile Bottom Navigation */
-        .mobile-bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
+        /* Footer */
+        .main-footer {
             background: var(--primary-black);
-            border-top: 2px solid var(--primary-red);
-            display: none;
-            justify-content: space-around;
-            padding: 0.5rem 0;
-            z-index: 1000;
-            box-shadow: 0 -4px 12px rgba(0,0,0,0.2);
+            color: var(--white);
+            padding: 3rem 1.5rem 1.5rem;
+            margin-top: 3rem;
         }
         
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--primary-red);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.6rem;
+        }
+        
+        .footer-links a {
             color: var(--white);
             text-decoration: none;
-            padding: 0.5rem;
-            flex: 1;
             transition: var(--transition);
+            opacity: 0.8;
+            font-size: 0.85rem;
         }
         
-        .nav-item.active {
+        .footer-links a:hover {
+            opacity: 1;
             color: var(--primary-red);
         }
         
-        .nav-item:hover {
-            color: var(--primary-red);
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 2rem auto 0;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            opacity: 0.7;
+            font-size: 0.8rem;
         }
-        
-        .nav-icon {
-            font-size: 1.2rem;
-            margin-bottom: 0.3rem;
-        }
-        
-        .nav-label {
-            font-size: 0.7rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
+
         /* Responsive Styles */
         @media (max-width: 1024px) {
             .hero-section {
                 height: 60vh;
                 min-height: 400px;
+            }
+            
+            .categories-grid {
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             }
         }
         
@@ -1810,8 +1863,8 @@
             }
 
             .hero-section {
-                height: 60vh; /* Fixed mobile height */
-                min-height: 400px;
+                height: 50vh;
+                min-height: 350px;
             }
             
             .cta-buttons {
@@ -1833,12 +1886,15 @@
                 height: 45px;
             }
             
-            .category-header {
-                flex-direction: column;
-                align-items: flex-start;
+            .categories-grid {
+                grid-template-columns: 1fr;
                 gap: 1rem;
             }
             
+            .category-card {
+                height: 250px;
+            }
+
             .form-row {
                 flex-direction: column;
                 gap: 0;
@@ -1882,12 +1938,8 @@
             }
             
             .whatsapp-chat-bot {
-                bottom: 4rem; /* Adjusted for bottom nav */
+                bottom: 1rem;
                 right: 1rem;
-            }
-            
-            .mobile-bottom-nav {
-                display: flex;
             }
         }
         
@@ -1901,8 +1953,8 @@
             }
             
             .hero-section {
-                height: 55vh; /* Adjusted for mobile */
-                min-height: 350px;
+                height: 45vh;
+                min-height: 300px;
             }
             
             .main-nav {
@@ -1910,23 +1962,31 @@
                 right: -100%;
             }
             
-            .section-title h2,
-            .category-title {
+            .section-header h2 {
                 font-size: 1.4rem;
+            }
+            
+            .category-filter {
+                gap: 0.5rem;
+            }
+            
+            .category-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.75rem;
             }
             
             .product-grid {
                 grid-template-columns: 1fr;
             }
             
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
             .chat-bot-container {
                 width: 280px;
                 right: -50px;
-            }
-            
-            .hero-slide img {
-                object-fit: cover; /* Ensure full coverage */
-                object-position: center;
             }
         }
 
@@ -1954,10 +2014,6 @@
 
             header {
                 padding-top: env(safe-area-inset-top);
-            }
-            
-            .mobile-bottom-nav {
-                padding-bottom: env(safe-area-inset-bottom);
             }
         }
 
@@ -2009,12 +2065,11 @@
             
             <nav class="main-nav" id="mainNav">
                 <a href="#home" class="nav-link">Home</a>
-                <a href="#clothing" class="nav-link">Clothing</a>
-                <a href="#home-goods" class="nav-link">Home Goods</a>
-                <a href="#art" class="nav-link">Art</a>
-                <a href="#offers" class="nav-link">Offers</a>
-                <a href="#gifts" class="nav-link">Gifts</a>
-                <a href="#about" class="nav-link">About</a>
+                <a href="#collections" class="nav-link">Collections</a>
+                <a href="#mens" class="nav-link">Men's</a>
+                <a href="#womens" class="nav-link">Women's</a>
+                <a href="#accessories" class="nav-link">Accessories</a>
+                <a href="#franchise" class="nav-link">Franchise</a>
             </nav>
             
             <div class="header-actions">
@@ -2053,79 +2108,68 @@
         <div class="hero-overlay">
             <div class="header-content">
                 <h1 class="store-name">DSOG STORES</h1>
-                <p class="store-tagline">Pride of Africa - Fashion Redefined</p>
+                <p class="store-tagline">Stylish Fashion for Everyday Living</p>
                 <div class="cta-buttons">
                     <button class="cta-btn primary" id="shopNowBtn">Shop Now</button>
-                    <button class="cta-btn" id="discoverBtn">Discover Collections</button>
+                    <button class="cta-btn" id="discoverBtn">View Collections</button>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- Latest Products Carousel -->
-    <section class="latest-products">
-        <div class="section-title">
-            <h2>Latest Arrivals</h2>
-            <button class="view-all-btn">View All</button>
-        </div>
-        <div class="swiper latestSwiper">
-            <div class="swiper-wrapper">
-                <!-- Latest products will be loaded dynamically -->
-            </div>
-            <div class="swiper-pagination"></div>
-        </div>
-    </section>
-    
-    <!-- Clothing Section -->
-    <section class="category-section" id="clothing">
-        <div class="category-header">
-            <div>
-                <h2 class="category-title">Clothing</h2>
-                <p class="category-description">Trendsetting apparel for every occasion, showcasing African-inspired designs with modern elegance.</p>
-            </div>
+    <!-- Featured Categories -->
+    <section class="featured-categories">
+        <div class="section-header">
+            <h2>Our Collections</h2>
+            <p>Discover trendy fashion items for your everyday style</p>
         </div>
         
-        <div class="product-grid" id="clothingProductsContainer">
-            <!-- Clothing products will be loaded dynamically -->
-            <div class="product-card" style="text-align: center; padding: 2rem; grid-column: 1 / -1;">
-                <div class="loading" style="margin: 0 auto; border-top-color: var(--primary-red); width: 30px; height: 30px;"></div>
-                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--gray);">Loading clothing collection...</p>
+        <div class="categories-grid">
+            <div class="category-card" data-category="mens">
+                <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Men's Fashion" class="category-image" loading="lazy">
+                <div class="category-overlay">
+                    <h3 class="category-title">Men's Collection</h3>
+                    <p class="category-description">Trendy outfits for the modern man</p>
+                </div>
             </div>
-        </div>
-    </section>
-    
-    <!-- Home Goods Section -->
-    <section class="category-section" id="home-goods">
-        <div class="category-header">
-            <div>
-                <h2 class="category-title">Home Goods</h2>
-                <p class="category-description">Transform your living spaces with premium home essentials that blend functionality with African aesthetics.</p>
+            
+            <div class="category-card" data-category="womens">
+                <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Women's Fashion" class="category-image" loading="lazy">
+                <div class="category-overlay">
+                    <h3 class="category-title">Women's Collection</h3>
+                    <p class="category-description">Elegant styles for every occasion</p>
+                </div>
             </div>
-        </div>
-        
-        <div class="product-grid" id="homeGoodsProductsContainer">
-            <!-- Home Goods products will be loaded dynamically -->
-            <div class="product-card" style="text-align: center; padding: 2rem; grid-column: 1 / -1;">
-                <div class="loading" style="margin: 0 auto; border-top-color: var(--primary-red); width: 30px; height: 30px;"></div>
-                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--gray);">Loading home goods collection...</p>
+            
+            <div class="category-card" data-category="accessories">
+                <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Accessories" class="category-image" loading="lazy">
+                <div class="category-overlay">
+                    <h3 class="category-title">Accessories</h3>
+                    <p class="category-description">Complete your look with our accessories</p>
+                </div>
             </div>
         </div>
     </section>
     
-    <!-- Art Section -->
-    <section class="category-section" id="art">
-        <div class="category-header">
-            <div>
-                <h2 class="category-title">Art</h2>
-                <p class="category-description">Curated artworks and creative pieces that celebrate African heritage and contemporary artistic expression.</p>
-            </div>
+    <!-- Product Listings Section -->
+    <section class="product-listings" id="products">
+        <div class="section-header">
+            <h2>Featured Products</h2>
+            <p>Trendsetting items that define contemporary fashion</p>
         </div>
         
-        <div class="product-grid" id="artProductsContainer">
-            <!-- Art products will be loaded dynamically -->
+        <div class="category-filter" id="categoryFilter">
+            <button class="category-btn active" data-category="all">All Products</button>
+            <button class="category-btn" data-category="mens">Men's</button>
+            <button class="category-btn" data-category="womens">Women's</button>
+            <button class="category-btn" data-category="accessories">Accessories</button>
+        </div>
+        
+        <div class="product-grid" id="productListingsContainer">
+            <!-- Products will be loaded dynamically -->
             <div class="product-card" style="text-align: center; padding: 2rem; grid-column: 1 / -1;">
                 <div class="loading" style="margin: 0 auto; border-top-color: var(--primary-red); width: 30px; height: 30px;"></div>
-                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--gray);">Loading art collection...</p>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--gray);">Loading fashion products...</p>
             </div>
         </div>
     </section>
@@ -2360,31 +2404,46 @@
         </div>
     </div>
 
-    <!-- Mobile Bottom Navigation -->
-    <nav class="mobile-bottom-nav">
-        <a href="#home" class="nav-item active">
-            <i class="fas fa-home nav-icon"></i>
-            <span class="nav-label">Shop</span>
-        </a>
-        <a href="#offers" class="nav-item">
-            <i class="fas fa-tag nav-icon"></i>
-            <span class="nav-label">Offers</span>
-        </a>
-        <a href="#gifts" class="nav-item">
-            <i class="fas fa-gift nav-icon"></i>
-            <span class="nav-label">Gifts</span>
-        </a>
-        <a href="#about" class="nav-item">
-            <i class="fas fa-info-circle nav-icon"></i>
-            <span class="nav-label">About</span>
-        </a>
-    </nav>
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>DSOG STORES</h4>
+                <p style="opacity: 0.8; line-height: 1.6; font-size: 0.85rem;">Trendsetting fashion for everyday style. Quality apparel and accessories for the modern individual.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#collections">Collections</a></li>
+                    <li><a href="#mens">Men's Fashion</a></li>
+                    <li><a href="#womens">Women's Fashion</a></li>
+                    <li><a href="#accessories">Accessories</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact & Franchise</h4>
+                <ul class="footer-links">
+                    <li><a href="#franchise">Become a Franchise</a></li>
+                    <li style="margin-top: 1rem; opacity: 0.8; font-size: 0.85rem;">Email: info@dsogstores.com</li>
+                    <li style="opacity: 0.8; font-size: 0.85rem;">Phone: +254 733 737983</li>
+                    <li style="opacity: 0.8; font-size: 0.85rem;">WhatsApp: +254 733 737983</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 DSOG STORES. All rights reserved. Fashion Redefined.</p>
+        </div>
+    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.min.js"></script>
     <script>
         // Updated Google Apps Script URL
-        const scriptUrl = 'https://script.google.com/macros/s/AKfycbw8UI6-xwor3TlH9KESJHaj1Dxzo5MtfbjX-EWnApN0dEiEM66_CH1egA0dTp1E_zeNAA/exec';
+        const scriptUrl = 'https://script.google.com/macros/s/AKfycbywv4pbcbACUQMBw-ENIkPN5Im2wMbObMHyZ2VrKj_QA0hvLnsRHHz7W4kKEQgQ0Ps-/exec';
 
         // Franchise Data
         const franchiseData = {
@@ -2460,27 +2519,6 @@
                 }
             });
 
-            // Mobile Bottom Navigation
-            const navItems = document.querySelectorAll('.nav-item');
-            navItems.forEach(item => {
-                item.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    navItems.forEach(nav => nav.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#home') {
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                    } else if (targetId === '#offers') {
-                        showNotification('Offers page coming soon!');
-                    } else if (targetId === '#gifts') {
-                        showNotification('Gifts page coming soon!');
-                    } else if (targetId === '#about') {
-                        showNotification('About page coming soon!');
-                    }
-                });
-            });
-
             // Search Functionality
             const searchBtn = document.getElementById('searchBtn');
             const searchContainer = document.getElementById('searchContainer');
@@ -2513,7 +2551,7 @@
             });
             
             function filterProductsBySearch(searchTerm) {
-                const productCards = document.querySelectorAll('.product-card');
+                const productCards = document.querySelectorAll('.product-card[data-category]');
                 let hasVisibleProducts = false;
                 
                 productCards.forEach(card => {
@@ -2550,27 +2588,6 @@
                 navigation: {
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
-                },
-            });
-
-            // Initialize latest products swiper
-            const latestSwiper = new Swiper('.latestSwiper', {
-                slidesPerView: 1,
-                spaceBetween: 20,
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
-                breakpoints: {
-                    640: {
-                        slidesPerView: 2,
-                    },
-                    768: {
-                        slidesPerView: 3,
-                    },
-                    1024: {
-                        slidesPerView: 4,
-                    },
                 },
             });
 
@@ -2803,7 +2820,6 @@
                 
                 // Generate WhatsApp message
                 let whatsappMessage = `*NEW ORDER - DSOG STORES*%0A%0A`;
-                whatsappMessage += `*Pride of Africa Collection*%0A`;
                 whatsappMessage += `*Franchise:* ${franchise.name}%0A`;
                 whatsappMessage += `*Customer Information:*%0A`;
                 whatsappMessage += `Name: ${customerName}%0A`;
@@ -3051,13 +3067,48 @@
                 }
             });
 
+            // Category filtering
+            const categoryFilter = document.getElementById('categoryFilter');
+            if (categoryFilter) {
+                categoryFilter.addEventListener('click', function(e) {
+                    if (e.target.classList.contains('category-btn')) {
+                        document.querySelectorAll('.category-btn').forEach(btn => {
+                            btn.classList.remove('active');
+                        });
+                        e.target.classList.add('active');
+                        
+                        const category = e.target.getAttribute('data-category');
+                        filterProducts(category);
+                    }
+                });
+            }
+
+            function filterProducts(category) {
+                const productCards = document.querySelectorAll('.product-card[data-category]');
+                let hasVisibleProducts = false;
+
+                productCards.forEach(card => {
+                    const productCategory = card.getAttribute('data-category');
+                    if (category === 'all' || productCategory === category) {
+                        card.style.display = 'flex';
+                        hasVisibleProducts = true;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                if (!hasVisibleProducts) {
+                    showNotification(`No ${category === 'all' ? '' : category + ' '}products found`);
+                }
+            }
+
             // CTA buttons
             const shopNowBtn = document.getElementById('shopNowBtn');
             const discoverBtn = document.getElementById('discoverBtn');
             
             if (shopNowBtn) {
                 shopNowBtn.addEventListener('click', function() {
-                    document.getElementById('clothing').scrollIntoView({ 
+                    document.getElementById('products').scrollIntoView({ 
                         behavior: 'smooth' 
                     });
                 });
@@ -3065,11 +3116,22 @@
             
             if (discoverBtn) {
                 discoverBtn.addEventListener('click', function() {
-                    document.getElementById('clothing').scrollIntoView({ 
+                    document.getElementById('collections').scrollIntoView({ 
                         behavior: 'smooth' 
                     });
                 });
             }
+
+            // Category cards
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    document.querySelector(`.category-btn[data-category="${category}"]`).click();
+                    document.getElementById('products').scrollIntoView({ 
+                        behavior: 'smooth' 
+                    });
+                });
+            });
 
             // Load products from backend
             async function loadProducts() {
@@ -3095,234 +3157,105 @@
             }
 
             // Sample product data for fallback
-            const sampleProducts = {
-                clothing: [
-                    {
-                        id: 'DSOG-CL001',
-                        name: 'African Print Shirt',
-                        category: 'clothing',
-                        basePrice: 3499,
-                        image: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-                        description: 'Vibrant African print shirt with traditional patterns'
-                    },
-                    {
-                        id: 'DSOG-CL002',
-                        name: 'Kente Dress',
-                        category: 'clothing',
-                        basePrice: 5899,
-                        image: 'https://images.unsplash.com/photo-1567095761054-7a02e69e5c43?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-                        description: 'Elegant Kente cloth dress for special occasions'
-                    },
-                    {
-                        id: 'DSOG-CL003',
-                        name: 'Dashiki T-Shirt',
-                        category: 'clothing',
-                        basePrice: 2299,
-                        image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-                        description: 'Modern dashiki inspired t-shirt'
-                    },
-                    {
-                        id: 'DSOG-CL004',
-                        name: 'African Maxi Dress',
-                        category: 'clothing',
-                        basePrice: 4599,
-                        image: 'https://images.unsplash.com/photo-1586790170083-2f9ceadc732d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-                        description: 'Long flowing maxi dress with African motifs'
-                    }
-                ],
-                homeGoods: [
-                    {
-                        id: 'DSOG-HG001',
-                        name: 'African Throw Pillows',
-                        category: 'home-goods',
-                        basePrice: 2499,
-                        image: 'https://images.unsplash.com/photo-1582582621959-48d27397dc69?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-                        description: 'Set of 4 decorative throw pillows with African patterns'
-                    },
-                    {
-                        id: 'DSOG-HG002',
-                        name: 'Wood Carving Art Piece',
-                        category: 'home-goods',
-                        basePrice: 7899,
-                        image: 'https://images.unsplash.com/photo-1578506750688-8cd171a4b171?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-                        description: 'Hand-carved wooden art piece showcasing African craftsmanship'
-                    },
-                    {
-                        id: 'DSOG-HG003',
-                        name: 'Mudcloth Table Runner',
-                        category: 'home-goods',
-                        basePrice: 1899,
-                        image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-                        description: 'Traditional mudcloth table runner for dining elegance'
-                    },
-                    {
-                        id: 'DSOG-HG004',
-                        name: 'Basket Collection',
-                        category: 'home-goods',
-                        basePrice: 3299,
-                        image: 'https://images.unsplash.com/photo-1562577308-c8b13343ea24?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-                        description: 'Set of hand-woven African baskets for home organization'
-                    }
-                ],
-                art: [
-                    {
-                        id: 'DSOG-ART001',
-                        name: 'Maasai Bead Art',
-                        category: 'art',
-                        basePrice: 8999,
-                        image: 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-                        description: 'Intricate bead artwork inspired by Maasai traditions'
-                    },
-                    {
-                        id: 'DSOG-ART002',
-                        name: 'Contemporary African Painting',
-                        category: 'art',
-                        basePrice: 12499,
-                        image: 'https://images.unsplash.com/photo-1543857778-c4a1a569e388?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-                        description: 'Large canvas painting depicting modern African life'
-                    },
-                    {
-                        id: 'DSOG-ART003',
-                        name: 'Sculptural Mask',
-                        category: 'art',
-                        basePrice: 6599,
-                        image: 'https://images.unsplash.com/photo-1563089145-599997674d42?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-                        description: 'Traditional African mask with contemporary twist'
-                    },
-                    {
-                        id: 'DSOG-ART004',
-                        name: 'Textile Wall Hanging',
-                        category: 'art',
-                        basePrice: 5499,
-                        image: 'https://images.unsplash.com/photo-1560969184-10fe8719e047?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-                        description: 'Colorful textile art piece for wall decoration'
-                    }
-                ]
-            };
+            const sampleProducts = [
+                {
+                    id: 'DSOG-M001',
+                    name: 'Men\'s Casual Shirt',
+                    category: 'mens',
+                    basePrice: 2499,
+                    image: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+                    description: 'Comfortable casual shirt for everyday wear'
+                },
+                {
+                    id: 'DSOG-M002',
+                    name: 'Men\'s Denim Jacket',
+                    category: 'mens',
+                    basePrice: 4599,
+                    image: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+                    description: 'Classic denim jacket with modern fit'
+                },
+                {
+                    id: 'DSOG-W001',
+                    name: 'Women\'s Summer Dress',
+                    category: 'womens',
+                    basePrice: 3299,
+                    image: 'https://images.unsplash.com/photo-1567095761054-7a02e69e5c43?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+                    description: 'Lightweight summer dress with floral pattern'
+                },
+                {
+                    id: 'DSOG-W002',
+                    name: 'Women\'s Leather Bag',
+                    category: 'womens',
+                    basePrice: 5499,
+                    image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+                    description: 'Genuine leather handbag with multiple compartments'
+                },
+                {
+                    id: 'DSOG-A001',
+                    name: 'Designer Sunglasses',
+                    category: 'accessories',
+                    basePrice: 1999,
+                    image: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+                    description: 'UV-protected designer sunglasses'
+                },
+                {
+                    id: 'DSOG-A002',
+                    name: 'Leather Belt',
+                    category: 'accessories',
+                    basePrice: 1299,
+                    image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+                    description: 'Genuine leather belt with metal buckle'
+                }
+            ];
 
             function loadSampleProducts() {
                 displayProducts(sampleProducts);
             }
 
             function displayProducts(products) {
-                // Display latest products in carousel
-                const latestSwiperWrapper = document.querySelector('.latestSwiper .swiper-wrapper');
-                if (latestSwiperWrapper) {
-                    latestSwiperWrapper.innerHTML = '';
+                const container = document.getElementById('productListingsContainer');
+                if (container) {
+                    container.innerHTML = '';
                     
-                    // Combine first products from each category for latest carousel
-                    const latestProducts = [
-                        ...products.clothing.slice(0, 2),
-                        ...products.homeGoods.slice(0, 1),
-                        ...products.art.slice(0, 1)
-                    ];
-                    
-                    latestProducts.forEach(product => {
-                        const slide = document.createElement('div');
-                        slide.className = 'swiper-slide product-slide';
+                    products.forEach(product => {
+                        const productCard = document.createElement('div');
+                        productCard.className = 'product-card';
+                        productCard.setAttribute('data-category', product.category);
                         
-                        slide.innerHTML = `
-                            <div class="product-card">
-                                <div class="product-image-container">
+                        productCard.innerHTML = `
+                            <div class="product-image-container">
+                                <div class="product-image-slider">
                                     <div class="product-image-slide">
                                         <img src="${product.image}" alt="${product.name}" onclick="openImageViewer('${product.image}', '${product.name}')">
                                     </div>
-                                    <span class="product-badge">New</span>
                                 </div>
-                                <div class="product-content">
-                                    <h3 class="product-title">${product.name}</h3>
-                                    <div class="product-price">KSh ${product.basePrice}</div>
-                                    <div class="product-meta">
-                                        <span class="pride-of-africa"><i class="fas fa-map"></i> Pride of Africa</span>
-                                    </div>
-                                    <div class="product-footer">
-                                        <button class="add-to-cart-btn" data-product='${JSON.stringify(product).replace(/'/g, "&#39;")}'>
-                                            <i class="fas fa-shopping-bag"></i> Add To Cart
-                                        </button>
-                                    </div>
+                                <span class="product-badge">${product.category}</span>
+                            </div>
+                            <div class="product-content">
+                                <h3 class="product-title">${product.name}</h3>
+                                <div class="product-price">KSh ${product.basePrice}</div>
+                                <div class="product-meta">
+                                    <span><i class="fas fa-shipping-fast"></i> Free Delivery</span>
+                                </div>
+                                <div class="product-footer">
+                                    <button class="add-to-cart-btn" data-product='${JSON.stringify(product).replace(/'/g, "&#39;")}'>
+                                        <i class="fas fa-shopping-bag"></i> Add To Cart
+                                    </button>
                                 </div>
                             </div>
                         `;
                         
-                        latestSwiperWrapper.appendChild(slide);
+                        container.appendChild(productCard);
                         
                         // Add to cart functionality
-                        const addToCartBtn = slide.querySelector('.add-to-cart-btn');
+                        const addToCartBtn = productCard.querySelector('.add-to-cart-btn');
                         addToCartBtn.addEventListener('click', function(e) {
                             e.stopPropagation();
                             const productData = JSON.parse(this.getAttribute('data-product'));
                             addToCart(productData);
                         });
                     });
-                    
-                    latestSwiper.update();
                 }
-                
-                // Display clothing products
-                const clothingContainer = document.getElementById('clothingProductsContainer');
-                if (clothingContainer && products.clothing) {
-                    clothingContainer.innerHTML = '';
-                    products.clothing.forEach(product => {
-                        const productCard = createProductCard(product);
-                        clothingContainer.appendChild(productCard);
-                    });
-                }
-                
-                // Display home goods products
-                const homeGoodsContainer = document.getElementById('homeGoodsProductsContainer');
-                if (homeGoodsContainer && products.homeGoods) {
-                    homeGoodsContainer.innerHTML = '';
-                    products.homeGoods.forEach(product => {
-                        const productCard = createProductCard(product);
-                        homeGoodsContainer.appendChild(productCard);
-                    });
-                }
-                
-                // Display art products
-                const artContainer = document.getElementById('artProductsContainer');
-                if (artContainer && products.art) {
-                    artContainer.innerHTML = '';
-                    products.art.forEach(product => {
-                        const productCard = createProductCard(product);
-                        artContainer.appendChild(productCard);
-                    });
-                }
-            }
-
-            function createProductCard(product) {
-                const productCard = document.createElement('div');
-                productCard.className = 'product-card';
-                
-                productCard.innerHTML = `
-                    <div class="product-image-container">
-                        <div class="product-image-slide">
-                            <img src="${product.image}" alt="${product.name}" onclick="openImageViewer('${product.image}', '${product.name}')">
-                        </div>
-                        <span class="product-badge">${product.category}</span>
-                    </div>
-                    <div class="product-content">
-                        <h3 class="product-title">${product.name}</h3>
-                        <div class="product-price">KSh ${product.basePrice}</div>
-                        <div class="product-meta">
-                            <span class="pride-of-africa"><i class="fas fa-map"></i> Pride of Africa</span>
-                        </div>
-                        <div class="product-footer">
-                            <button class="add-to-cart-btn" data-product='${JSON.stringify(product).replace(/'/g, "&#39;")}'>
-                                <i class="fas fa-shopping-bag"></i> Add To Cart
-                            </button>
-                        </div>
-                    </div>
-                `;
-                
-                // Add to cart functionality
-                const addToCartBtn = productCard.querySelector('.add-to-cart-btn');
-                addToCartBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const productData = JSON.parse(this.getAttribute('data-product'));
-                    addToCart(productData);
-                });
-                
-                return productCard;
             }
 
             // Add to cart function
@@ -3394,46 +3327,40 @@
                 const lowerMessage = message.toLowerCase();
                 
                 if (lowerMessage.includes('product') || lowerMessage.includes('item')) {
-                    addChatMessage('We have three main collections: Clothing, Home Goods, and Art. All proudly African! Which category interests you?', 'bot');
-                } else if (lowerMessage.includes('clothing') || lowerMessage.includes('wear')) {
-                    addChatMessage('Our clothing collection features traditional African prints with modern designs. Check out the clothing section!', 'bot');
-                    document.getElementById('clothing').scrollIntoView({ behavior: 'smooth' });
-                } else if (lowerMessage.includes('home') || lowerMessage.includes('decor')) {
-                    addChatMessage('Our Home Goods collection brings African elegance to your living spaces. Browse the home goods section!', 'bot');
-                    document.getElementById('home-goods').scrollIntoView({ behavior: 'smooth' });
-                } else if (lowerMessage.includes('art')) {
-                    addChatMessage('Our Art collection showcases the best of African creativity. Explore the art section!', 'bot');
-                    document.getElementById('art').scrollIntoView({ behavior: 'smooth' });
+                    addChatMessage('We have a great collection of fashion items! You can browse our products or let me help you find something specific.', 'bot');
                 } else if (lowerMessage.includes('order') || lowerMessage.includes('buy')) {
-                    addChatMessage('Great! You can add items to your cart and checkout. We support franchise ordering across Kenya.', 'bot');
-                } else if (lowerMessage.includes('pride') || lowerMessage.includes('africa')) {
-                    addChatMessage('All our products celebrate African heritage and craftsmanship. We\'re proud to showcase the best of Africa!', 'bot');
+                    addChatMessage('Great! You can place an order directly through our website. Would you like me to help you with that?', 'bot');
+                } else if (lowerMessage.includes('price') || lowerMessage.includes('cost')) {
+                    addChatMessage('Our prices are competitive and vary by product. You can see all prices on our website. Is there a specific item you\'re interested in?', 'bot');
+                } else if (lowerMessage.includes('delivery') || lowerMessage.includes('shipping')) {
+                    addChatMessage('We offer free delivery within 3-5 business days. For express delivery, additional charges may apply.', 'bot');
                 } else if (lowerMessage.includes('franchise')) {
-                    addChatMessage('DSOG operates as a franchise model across Kenya. Orders go directly to the selected franchise location.', 'bot');
+                    addChatMessage('DSOG operates as a franchise model! We have multiple locations. Would you like to know more about becoming a franchisee or finding a franchise near you?', 'bot');
                 } else {
-                    addChatMessage('For immediate assistance, contact us at +254 733 737983 or browse our Pride of Africa collections.', 'bot');
+                    addChatMessage('Thanks for your message! For immediate assistance, you can contact us at +254 733 737983 or continue browsing our collections.', 'bot');
                 }
             }
 
             function handleChatAction(action) {
                 switch(action) {
                     case 'products':
-                        addChatMessage('We have three main categories: Clothing, Home Goods, and Art. All showcasing African excellence.', 'bot');
-                        document.getElementById('clothing').scrollIntoView({ behavior: 'smooth' });
+                        addChatMessage('You can browse all our fashion collections on the website. We have men\'s wear, women\'s wear, and accessories.', 'bot');
+                        document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
                         break;
                     case 'order':
-                        addChatMessage('To place an order, add items to your cart and checkout. Remember to select your nearest franchise!', 'bot');
+                        addChatMessage('To place an order, add items to your cart and proceed to checkout. You can also order directly via WhatsApp!', 'bot');
                         if (cartItems.length > 0) {
                             openOrderModal();
                         } else {
-                            addChatMessage('Your cart is empty. Browse our collections to add items first.', 'bot');
+                            addChatMessage('Your cart is currently empty. Browse our collections to add items first.', 'bot');
                         }
                         break;
                     case 'tracking':
-                        addChatMessage('For order tracking, please contact the franchise you ordered from directly.', 'bot');
+                        addChatMessage('For order tracking, please contact the franchise you ordered from directly. Each franchise handles their own deliveries.', 'bot');
                         break;
                     case 'franchise':
-                        addChatMessage('We have franchise locations in major Kenyan cities. Each franchise maintains our quality standards.', 'bot');
+                        addChatMessage('We have franchise locations in Nairobi, Mombasa, Kisumu, and Nakuru. Each franchise operates independently but maintains our quality standards.', 'bot');
+                        document.getElementById('franchise').scrollIntoView({ behavior: 'smooth' });
                         break;
                 }
             }
