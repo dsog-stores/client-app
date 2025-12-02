@@ -50,7 +50,357 @@
             --shadow-lg: 0 10px 25px rgba(178, 34, 34, 0.15);
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        /* Geometric Hero Styles */
+        .geometric-hero {
+            position: relative;
+            height: 70vh;
+            min-height: 500px;
+            max-height: 800px;
+            background: linear-gradient(135deg, var(--primary-black) 0%, #111 100%);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
         
+        .geometric-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.7;
+        }
+        
+        /* Geometric Shapes */
+        .shape {
+            position: absolute;
+            background: var(--primary-red);
+            transition: var(--transition);
+        }
+        
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            top: -100px;
+            left: 5%;
+            opacity: 0.15;
+            transform: rotate(15deg);
+        }
+        
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+            top: 20%;
+            right: 10%;
+            background: var(--primary-gold);
+            opacity: 0.1;
+            transform: rotate(45deg);
+        }
+        
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            bottom: 15%;
+            left: 15%;
+            background: var(--primary-red);
+            opacity: 0.2;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .shape-4 {
+            width: 250px;
+            height: 250px;
+            clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+            top: 40%;
+            right: 20%;
+            background: var(--primary-black);
+            border: 2px solid var(--primary-gold);
+            opacity: 0.3;
+        }
+        
+        .shape-5 {
+            width: 180px;
+            height: 180px;
+            clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+            bottom: 10%;
+            right: 15%;
+            background: var(--primary-red);
+            opacity: 0.15;
+            transform: rotate(-30deg);
+        }
+        
+        .shape-6 {
+            width: 120px;
+            height: 120px;
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            top: 10%;
+            left: 20%;
+            background: var(--primary-gold);
+            opacity: 0.08;
+            animation: spin 20s linear infinite;
+        }
+        
+        /* Product Silhouettes */
+        .silhouette {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+        }
+        
+        .silhouette-watch {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid var(--primary-gold);
+            top: 25%;
+            left: 25%;
+        }
+        
+        .silhouette-watch::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 20px;
+            background: rgba(212, 175, 55, 0.3);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 4px;
+        }
+        
+        .silhouette-handbag {
+            width: 100px;
+            height: 80px;
+            background: rgba(178, 34, 34, 0.1);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            top: 60%;
+            right: 30%;
+            clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 10% 100%);
+        }
+        
+        .silhouette-heel {
+            width: 60px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 2px solid var(--primary-red);
+            bottom: 20%;
+            left: 35%;
+            transform: rotate(-15deg);
+        }
+        
+        .silhouette-shirt {
+            width: 90px;
+            height: 110px;
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            top: 40%;
+            right: 35%;
+        }
+        
+        /* Geometric Content */
+        .geometric-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: var(--white);
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .geometric-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            letter-spacing: 3px;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+            text-shadow: 0 5px 25px rgba(178, 34, 34, 0.5);
+        }
+        
+        .geometric-content .store-tagline {
+            font-size: clamp(1.1rem, 2.5vw, 1.8rem);
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: var(--primary-gold);
+        }
+        
+        .hero-subtitle {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 2.5rem;
+            letter-spacing: 1px;
+        }
+        
+        /* CTA Buttons for Geometric */
+        .geometric-content .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .geometric-content .cta-btn {
+            padding: 1rem 2rem;
+            border: 2px solid var(--primary-gold);
+            background: transparent;
+            color: var(--white);
+            border-radius: 0;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+        }
+        
+        .geometric-content .cta-btn.primary {
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--secondary-red) 100%);
+            border-color: var(--primary-red);
+        }
+        
+        .geometric-content .cta-btn.outline {
+            background: transparent;
+            border-color: var(--primary-gold);
+        }
+        
+        .geometric-content .cta-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(178, 34, 34, 0.4);
+        }
+        
+        .geometric-content .cta-btn.primary:hover {
+            background: linear-gradient(135deg, var(--secondary-red) 0%, #6a0f0f 100%);
+        }
+        
+        .geometric-content .cta-btn.outline:hover {
+            background: rgba(212, 175, 55, 0.1);
+        }
+        
+        /* Geometric Stats */
+        .geometric-stats {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            min-width: 120px;
+            transition: var(--transition);
+        }
+        
+        .stat:hover {
+            transform: translateY(-5px);
+            background: rgba(178, 34, 34, 0.1);
+            border-color: var(--primary-red);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+            margin-bottom: 0.3rem;
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            letter-spacing: 1px;
+        }
+        
+        .stat-divider {
+            width: 2px;
+            height: 40px;
+            background: rgba(212, 175, 55, 0.3);
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+        
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        /* Hover Effects on Shapes */
+        .shape:hover {
+            opacity: 0.3;
+            transform: scale(1.1);
+        }
+        
+        .silhouette:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary-red);
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .geometric-hero {
+                height: 60vh;
+                min-height: 400px;
+            }
+            
+            .shape-1, .shape-2, .shape-4, .shape-5 {
+                display: none;
+            }
+            
+            .geometric-title {
+                font-size: 2.5rem;
+            }
+            
+            .geometric-content .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .geometric-content .cta-btn {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
+            }
+            
+            .geometric-stats {
+                gap: 1rem;
+            }
+            
+            .stat {
+                min-width: 100px;
+                padding: 0.8rem;
+            }
+            
+            .stat-number {
+                font-size: 1.5rem;
+            }
+        }
         * {
             margin: 0;
             padding: 0;
@@ -2085,33 +2435,59 @@
     </header>
 
     <!-- Hero Section -->
+    <!-- Geometric Hero Section -->
     <section class="hero-section" id="home">
-        <div class="hero-carousel">
-            <div class="swiper heroSwiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide hero-slide">
-                        <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Fashion Collection" loading="lazy">
-                    </div>
-                    <div class="swiper-slide hero-slide">
-                        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Trendy Outfits" loading="lazy">
-                    </div>
-                    <div class="swiper-slide hero-slide">
-                        <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Accessories" loading="lazy">
-                    </div>
-                </div>
-                <div class="swiper-pagination"></div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
+        <div class="geometric-hero">
+            <!-- Geometric Pattern Background -->
+            <div class="geometric-pattern">
+                <!-- Main shapes -->
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+                <div class="shape shape-5"></div>
+                <div class="shape shape-6"></div>
+                
+                <!-- Product silhouettes integrated into pattern -->
+                <div class="silhouette silhouette-watch"></div>
+                <div class="silhouette silhouette-handbag"></div>
+                <div class="silhouette silhouette-heel"></div>
+                <div class="silhouette silhouette-shirt"></div>
             </div>
-        </div>
-        
-        <div class="hero-overlay">
-            <div class="header-content">
-                <h1 class="store-name">DSOG STORES</h1>
-                <p class="store-tagline">Stylish Fashion for Everyday Living</p>
+            
+            <!-- Hero Content -->
+            <div class="geometric-content">
+                <h1 class="store-name geometric-title">DSOG STORES</h1>
+                <p class="store-tagline">Where Geometry Meets Fashion</p>
+                <p class="hero-subtitle">Modern. Angular. Elegant.</p>
+                
                 <div class="cta-buttons">
-                    <button class="cta-btn primary" id="shopNowBtn">Shop Now</button>
-                    <button class="cta-btn" id="discoverBtn">View Collections</button>
+                    <button class="cta-btn primary" id="shopNowBtn">
+                        <span>Explore Collections</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <button class="cta-btn outline" id="discoverBtn">
+                        <span>View Geometry</span>
+                        <i class="fas fa-shapes"></i>
+                    </button>
+                </div>
+                
+                <!-- Geometric stats -->
+                <div class="geometric-stats">
+                    <div class="stat">
+                        <div class="stat-number">150+</div>
+                        <div class="stat-label">Designs</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Franchises</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <div class="stat-number">∞</div>
+                        <div class="stat-label">Style</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -3402,6 +3778,71 @@
                     }, 300);
                 }, 3000);
             }
+        });
+        // Geometric Hero Interactive Effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Shape animations on scroll
+            const shapes = document.querySelectorAll('.shape');
+            
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                
+                shapes.forEach((shape, index) => {
+                    const speed = 0.3 + (index * 0.1);
+                    shape.style.transform = `translateY(${scrolled * speed * 0.1}px)`;
+                });
+            });
+            
+            // Interactive shape hover effects
+            shapes.forEach(shape => {
+                shape.addEventListener('mouseenter', function() {
+                    this.style.opacity = '0.4';
+                    this.style.transform += ' scale(1.1)';
+                });
+                
+                shape.addEventListener('mouseleave', function() {
+                    this.style.opacity = '';
+                    this.style.transform = this.style.transform.replace(' scale(1.1)', '');
+                });
+            });
+            
+            // Geometric button click effects
+            const geometricBtns = document.querySelectorAll('.geometric-content .cta-btn');
+            geometricBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    // Create ripple effect
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    
+                    ripple.style.width = ripple.style.height = size + 'px';
+                    ripple.style.left = e.clientX - rect.left - size/2 + 'px';
+                    ripple.style.top = e.clientY - rect.top - size/2 + 'px';
+                    ripple.style.background = 'rgba(212, 175, 55, 0.3)';
+                    ripple.style.position = 'absolute';
+                    ripple.style.borderRadius = '50%';
+                    ripple.style.transform = 'scale(0)';
+                    ripple.style.animation = 'ripple 0.6s linear';
+                    
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+            
+            // Add ripple animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes ripple {
+                    to {
+                        transform: scale(4);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
         });
     </script>
 </body>
