@@ -148,6 +148,14 @@
             width: 100%;
         }
         
+        .nav-links a.active {
+            color: var(--primary-red);
+        }
+        
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        
         /* Mobile Menu */
         .mobile-menu {
             position: fixed;
@@ -497,6 +505,8 @@
             transition: var(--transition);
             cursor: pointer;
             border: 2px solid transparent;
+            text-decoration: none;
+            display: block;
         }
         
         .collection-card:hover {
@@ -1327,11 +1337,12 @@
             
             <!-- Desktop Navigation -->
             <nav class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#collections">Collections</a>
-                <a href="#products">Products</a>
-                <a href="#gifts">Gifts</a>
-                <a href="#contact">Contact</a>
+                <a href="index.html" class="active">Home</a>
+                <a href="mens.html">Men's</a>
+                <a href="womens.html">Women's</a>
+                <a href="kids.html">Kids</a>
+                <a href="accessories.html">Accessories</a>
+                <a href="gifts.html">Gifts</a>
             </nav>
             
             <!-- Hamburger Menu Button -->
@@ -1349,11 +1360,12 @@
             <i class="fas fa-times"></i>
         </button>
         <nav class="mobile-nav-links">
-            <a href="#home" onclick="closeMobileMenu()">Home</a>
-            <a href="#collections" onclick="closeMobileMenu()">Collections</a>
-            <a href="#products" onclick="closeMobileMenu()">Products</a>
-            <a href="#gifts" onclick="closeMobileMenu()">Gifts</a>
-            <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+            <a href="index.html" onclick="closeMobileMenu()">Home</a>
+            <a href="mens.html" onclick="closeMobileMenu()">Men's</a>
+            <a href="womens.html" onclick="closeMobileMenu()">Women's</a>
+            <a href="kids.html" onclick="closeMobileMenu()">Kids</a>
+            <a href="accessories.html" onclick="closeMobileMenu()">Accessories</a>
+            <a href="gifts.html" onclick="closeMobileMenu()">Gifts</a>
             <a href="mailto:care.dsogstores@gmail.com" onclick="closeMobileMenu()">Email Us</a>
             <a href="https://wa.me/254733737983" onclick="closeMobileMenu()">WhatsApp</a>
         </nav>
@@ -1427,7 +1439,7 @@
     <nav class="bottom-nav">
         <div class="bottom-nav-container">
             <!-- Home Button -->
-            <a href="#home" class="nav-item active" onclick="setActiveNav(this)">
+            <a href="index.html" class="nav-item active" onclick="setActiveNav(this)">
                 <div class="nav-icon">
                     <i class="fas fa-home"></i>
                 </div>
@@ -1459,9 +1471,9 @@
             </a>
             
             <!-- Contact Button -->
-            <a href="#contact" class="nav-item" onclick="setActiveNav(this)">
+            <a href="https://wa.me/254733737983" class="nav-item" onclick="setActiveNav(this)" target="_blank">
                 <div class="nav-icon">
-                    <i class="fas fa-headset"></i>
+                    <i class="fab fa-whatsapp"></i>
                 </div>
                 <span class="nav-label">Contact</span>
             </a>
@@ -1514,8 +1526,8 @@
 
     <!-- Enhanced JavaScript with DSOG Theme and WhatsApp Bot -->
     <script>
-        // Google Apps Script URL
-        const scriptUrl = 'https://script.google.com/macros/s/AKfycbywv4pbcbACUQMBw-ENIkPN5Im2wMbObMHyZ2VrKj_QA0hvLnsRHHz7W4kKEQgQ0Ps-/exec';
+        // Google Apps Script URL - UPDATE THIS
+        const scriptUrl = 'https://script.google.com/macros/s/AKfycby-iIbv89AN4tXwB1bxdw3GC4CPHDSFkkwrS9apdMH0ZLYBaY4aKYESnAZGUqGNmEmorA/exec';
         
         // WhatsApp number
         const mainWhatsAppNumber = '254733737983';
@@ -1561,37 +1573,52 @@
         const heroSlides = [
             {
                 image: 'https://i.postimg.cc/P5g46hcZ/Black-White-Minimal-Simple-Modern-Creative-Studio-Ego-Logo-3.webp',
-                title: 'Epitome Collection',
-                subtitle: 'Premium hoodies & streetwear'
+                title: 'DSOG Collections',
+                subtitle: 'Premium fashion for everyone'
             },
             {
                 image: 'https://i.postimg.cc/SN01T6MK/Black-White-Minimal-Simple-Modern-Creative-Studio-Ego-Logo-4.webp',
-                title: 'Fitare Collection',
-                subtitle: 'Sports & fitness apparel'
+                title: 'New Arrivals',
+                subtitle: 'Fresh styles every season'
             },
             {
                 image: 'https://i.postimg.cc/44wbtpQ1/Black-White-Minimal-Simple-Modern-Creative-Studio-Ego-Logo-5.webp',
-                title: 'Signature T-shirts',
-                subtitle: 'Classic designs, premium quality'
+                title: 'Direct WhatsApp Ordering',
+                subtitle: 'Shop instantly via WhatsApp'
             }
         ];
         
-        // Collections data
+        // Collections data for home page
         const collectionsData = [
             {
-                image: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                image: 'https://images.unsplash.com/photo-1520975916090-3105956dac38?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
                 title: 'Men\'s Collection',
-                description: 'Trendy outfits for the modern man'
+                description: 'Premium menswear for every occasion',
+                link: 'mens.html'
             },
             {
-                image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
                 title: 'Women\'s Collection',
-                description: 'Elegant styles for every occasion'
+                description: 'Elegant womenswear for all styles',
+                link: 'womens.html'
             },
             {
-                image: 'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                image: 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                title: 'Kids Collection',
+                description: 'Comfortable kids wear',
+                link: 'kids.html'
+            },
+            {
+                image: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
                 title: 'Accessories',
-                description: 'Complete your look with our accessories'
+                description: 'Complete your fashion look',
+                link: 'accessories.html'
+            },
+            {
+                image: 'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                title: 'Gifts',
+                description: 'Perfect presents for special occasions',
+                link: 'gifts.html'
             }
         ];
         
@@ -1631,13 +1658,13 @@
 
         // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('🚀 DSOG Franchise App - Enhanced Version');
+            console.log('🚀 DSOG Franchise App - Home Page');
             detectFranchiseeFromURL();
             initMobileMenu();
             initHeroSlideshow();
             loadCollections();
             loadGifts();
-            loadProducts();
+            loadFeaturedProducts();
             initModal();
             initBottomNav();
             initWhatsAppChat();
@@ -1668,7 +1695,7 @@
                 const savedFranchisee = localStorage.getItem('dsog_franchisee');
                 if (savedFranchisee) {
                     const franchiseeData = JSON.parse(savedFranchisee);
-                    currentFranchisee = franchisees[franchiseeData.code] || franchisees[franchiseeCode];
+                    currentFranchisee = franchisees[franchiseeData.code];
                 }
             }
         }
@@ -1798,8 +1825,9 @@
             const container = document.getElementById('collectionsContainer');
             
             collectionsData.forEach(collection => {
-                const card = document.createElement('div');
+                const card = document.createElement('a');
                 card.className = 'collection-card';
+                card.href = collection.link;
                 card.innerHTML = `
                     <img src="${collection.image}" alt="${collection.title}" class="collection-image" loading="lazy">
                     <div class="collection-overlay">
@@ -1807,10 +1835,6 @@
                         <p class="collection-description">${collection.description}</p>
                     </div>
                 `;
-                
-                card.addEventListener('click', function() {
-                    document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
-                });
                 
                 container.appendChild(card);
             });
@@ -1830,6 +1854,10 @@
                     <h3 class="gift-title">${gift.title}</h3>
                     <p class="gift-description">${gift.description}</p>
                 `;
+                
+                card.addEventListener('click', function() {
+                    window.location.href = 'gifts.html';
+                });
                 
                 container.appendChild(card);
             });
@@ -1994,37 +2022,51 @@
             currentImageIndex = 0;
         }
         
-        // Load products from Google Sheets
-        async function loadProducts() {
+        // Load featured products from all collections
+        async function loadFeaturedProducts() {
             const container = document.getElementById('productsContainer');
             
             try {
-                console.log('📦 Loading products from Google Sheets...');
+                console.log('📦 Loading featured products...');
                 
-                const response = await fetch(`${scriptUrl}?action=getProducts&timestamp=${Date.now()}`);
+                // Try to load from backend
+                const collections = ['mens', 'womens', 'kids', 'accessories', 'gifts'];
+                const allProducts = [];
                 
-                if (!response.ok) {
-                    throw new Error('Failed to fetch products');
+                // Load 2 products from each collection
+                for (const collection of collections) {
+                    try {
+                        const response = await fetch(`${scriptUrl}?action=getProducts&collection=${collection}`);
+                        const result = await response.json();
+                        if (result.success && result.data) {
+                            // Add collection info to each product
+                            const productsWithCollection = result.data.slice(0, 2).map(product => ({
+                                ...product,
+                                collectionName: collection
+                            }));
+                            allProducts.push(...productsWithCollection);
+                        }
+                    } catch (error) {
+                        console.error(`Error loading ${collection}:`, error);
+                    }
                 }
                 
-                const result = await response.json();
-                
-                if (result.success && result.data && result.data.length > 0) {
-                    console.log(`✅ Loaded ${result.data.length} products`);
-                    displayProducts(result.data);
+                if (allProducts.length > 0) {
+                    console.log(`✅ Loaded ${allProducts.length} featured products`);
+                    displayFeaturedProducts(allProducts.slice(0, 8)); // Show 8 featured products
                 } else {
                     throw new Error('No products found');
                 }
                 
             } catch (error) {
-                console.error('❌ Error loading products:', error);
+                console.error('❌ Error loading featured products:', error);
                 // Fallback to sample products
                 loadSampleProducts();
             }
         }
         
-        // Display products in the grid
-        function displayProducts(products) {
+        // Display featured products
+        function displayFeaturedProducts(products) {
             const container = document.getElementById('productsContainer');
             container.innerHTML = '';
             
@@ -2042,7 +2084,7 @@
             card.innerHTML = `
                 <img src="${product.image}" alt="${product.name}" class="product-image" loading="lazy">
                 <div class="product-info">
-                    <div class="product-badge">${product.category}</div>
+                    <div class="product-badge">${product.collectionName || product.category}</div>
                     <h3 class="product-title">${product.name}</h3>
                     <div class="product-price">KSh ${product.basePrice}</div>
                     <p class="product-description">${product.description || 'Premium quality product from DSOG STORES. Crafted with attention to detail.'}</p>
@@ -2071,7 +2113,8 @@
                     category: 'clothing',
                     basePrice: 8999,
                     image: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-                    description: 'Premium quality hoodie with comfortable fabric and modern design.'
+                    description: 'Premium quality hoodie with comfortable fabric and modern design.',
+                    collectionName: 'mens'
                 },
                 {
                     id: '2',
@@ -2079,7 +2122,8 @@
                     category: 'clothing',
                     basePrice: 4550,
                     image: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-                    description: 'Elegant designer t-shirt perfect for casual wear.'
+                    description: 'Elegant designer t-shirt perfect for casual wear.',
+                    collectionName: 'womens'
                 },
                 {
                     id: '3',
@@ -2087,7 +2131,8 @@
                     category: 'sportswear',
                     basePrice: 6550,
                     image: 'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-                    description: 'High-performance sports jersey for athletic activities.'
+                    description: 'High-performance sports jersey for athletic activities.',
+                    collectionName: 'kids'
                 },
                 {
                     id: '4',
@@ -2095,11 +2140,21 @@
                     category: 'accessories',
                     basePrice: 2999,
                     image: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-                    description: 'Stylish cap to complete your fashion look.'
+                    description: 'Stylish cap to complete your fashion look.',
+                    collectionName: 'accessories'
+                },
+                {
+                    id: '5',
+                    name: 'Gift Box Set',
+                    category: 'gifts',
+                    basePrice: 14999,
+                    image: 'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+                    description: 'Premium gift box set with multiple fashion items.',
+                    collectionName: 'gifts'
                 }
             ];
             
-            displayProducts(sampleProducts);
+            displayFeaturedProducts(sampleProducts);
         }
         
         // WhatsApp ordering function with franchisee tracking
@@ -2131,20 +2186,25 @@
             
             navItems.forEach(item => {
                 item.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    if (targetElement) {
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
+                    if (this.getAttribute('href').startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
                         
-                        // Update active state after scroll
-                        setTimeout(() => {
-                            setActiveNav(this);
-                        }, 500);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                            
+                            // Update active state after scroll
+                            setTimeout(() => {
+                                setActiveNav(this);
+                            }, 500);
+                        }
+                    } else {
+                        // For external links, just update active state
+                        setActiveNav(this);
                     }
                 });
             });
@@ -2191,7 +2251,7 @@
                 case 'products':
                     addChatMessage('I\'d like to see products', 'user');
                     setTimeout(() => {
-                        addChatMessage('You can browse all our products in the Products section. I can help you find something specific! What type of clothing are you looking for?', 'bot');
+                        addChatMessage('You can browse all our collections from the menu. We have Men\'s, Women\'s, Kids, Accessories, and Gifts collections!', 'bot');
                     }, 500);
                     break;
                     
@@ -2215,7 +2275,7 @@
                         if (currentFranchisee) {
                             addChatMessage(`Our franchisee ${currentFranchisee.name} in ${currentFranchisee.location} is available via WhatsApp. Click the chat icon to message them directly!`, 'bot');
                         } else {
-                            addChatMessage('You can contact our main team via WhatsApp for any inquiries.', 'bot');
+                            addChatMessage('You can contact our main team via WhatsApp for any inquiries. Just click the WhatsApp button on any product!', 'bot');
                         }
                     }, 500);
                     break;
@@ -2247,7 +2307,7 @@
             let response = '';
             
             if (message.includes('product') || message.includes('item') || message.includes('buy')) {
-                response = 'You can browse all our products in the Products section. Click any product to view details and order via WhatsApp!';
+                response = 'You can browse all our collections from the menu. We have Men\'s, Women\'s, Kids, Accessories, and Gifts collections!';
             } else if (message.includes('price') || message.includes('cost') || message.includes('how much')) {
                 response = 'All prices are listed with each product. You can see them in the Products section.';
             } else if (message.includes('delivery') || message.includes('shipping')) {
@@ -2256,8 +2316,10 @@
                 response = 'Size information is available for each product. Please check the product details or ask when ordering.';
             } else if (message.includes('hello') || message.includes('hi') || message.includes('hey')) {
                 response = 'Hello! I\'m your DSOG assistant. How can I help you today?';
+            } else if (message.includes('collection') || message.includes('category')) {
+                response = 'We have 5 main collections: Men\'s, Women\'s, Kids, Accessories, and Gifts. Use the menu to explore each one!';
             } else {
-                response = 'I\'m here to help! You can browse our products, place orders via WhatsApp, or ask about specific items.';
+                response = 'I\'m here to help! You can browse our collections, place orders via WhatsApp, or ask about specific items.';
             }
             
             addChatMessage(response, 'bot');
